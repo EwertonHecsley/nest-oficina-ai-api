@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from './env.validation';
+import { DatabaseModule } from './infra/database/database.module';
 
 @Module({
   imports: [
@@ -8,6 +9,7 @@ import { validate } from './env.validation';
       isGlobal: true,
       validate,
     }),
+    DatabaseModule,
   ],
   controllers: [],
   providers: [],
