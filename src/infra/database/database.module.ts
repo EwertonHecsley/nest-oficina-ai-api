@@ -1,11 +1,11 @@
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
-import * as schema from './schema';
 import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
+import { relations } from './relations';
 
 export const DRIZZLE = Symbol('DRIZZLE');
-export type Database = NodePgDatabase<typeof schema>;
+export type Database = NodePgDatabase<typeof relations>;
 
 @Global()
 @Module({
@@ -17,7 +17,7 @@ export type Database = NodePgDatabase<typeof schema>;
         const pool = new Pool({
           connectionString: config.getOrThrow<string>('DATABASE_URL'),
         });
-        return drizzle(pool, { schema });
+        return drizzle({ client: pool, relations });
       },
     },
   ],
