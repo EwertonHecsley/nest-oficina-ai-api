@@ -7,9 +7,18 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
-  const config = new DocumentBuilder().setTitle('Oficina AI API').setVersion('0.1').build();
+  const config = new DocumentBuilder()
+    .setTitle('Oficina AI API')
+    .setVersion('0.1')
+    .build();
   SwaggerModule.setup('docs', app, SwaggerModule.createDocument(app, config));
 
   await app.listen(process.env.PORT ?? 3000);
