@@ -1,0 +1,59 @@
+# Dependências locais (devem ser instaladas dentro do container)
+node_modules/
+bower_components/
+vendor/
+.venv/
+env/
+venv/
+ENV/
+
+# Arquivos de log e cache
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.npm
+.cache/
+
+# Pastas de build e saída local
+dist/
+build/
+out/
+target/
+
+# Arquivos do sistema operacional e IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Arquivos de controle de versão
+.git
+.gitignore
+.gitattributes
+.hg
+.svn
+
+# Arquivos de configuração local e segredos
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Documentação que não precisa ir para produção
+README.md
+CHANGELOG.md
+LICENSE
+docs/
+
+# Arquivos do próprio Docker que não precisam ser buildados de volta
+Dockerfile
+docker-compose*.yml
+.dockerignore
