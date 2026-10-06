@@ -33,4 +33,10 @@ export class VehiclesService {
   listByCustomer(customerId: string) {
     return this.repo.findByCustomer(customerId);
   }
+
+  async getById(id: string) {
+    const vehicle = await this.repo.findById(id);
+    if (!vehicle) throw new NotFoundException(`Veículo ${id} não encontrado`);
+    return vehicle;
+  }
 }

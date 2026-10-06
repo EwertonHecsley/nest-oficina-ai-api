@@ -30,4 +30,13 @@ export class VehiclesRepository {
       .from(vehicles)
       .where(eq(vehicles.customerId, customerId));
   }
+
+  async findById(id: string): Promise<Vehicle | undefined> {
+    const [row] = await this.db
+      .select()
+      .from(vehicles)
+      .where(eq(vehicles.id, id))
+      .limit(1);
+    return row;
+  }
 }
