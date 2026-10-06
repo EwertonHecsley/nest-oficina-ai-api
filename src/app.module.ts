@@ -4,6 +4,7 @@ import { validate } from './env.validation';
 import { DatabaseModule } from './infra/database/database.module';
 import { VehiclesModule } from './modules/vehicles/vehicles.module';
 import { CustomerModule } from './modules/customers/customer.module';
+import { ServiceOrdersModule } from './modules/service-orders/service-orders.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CustomerModule } from './modules/customers/customer.module';
     DatabaseModule,
     CustomerModule,
     VehiclesModule,
+    ServiceOrdersModule,
   ],
   controllers: [],
   providers: [],
