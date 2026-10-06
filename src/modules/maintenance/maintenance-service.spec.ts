@@ -54,8 +54,8 @@ describe('MaintenanceService', () => {
     };
 
     customers = {
-    findById: jest.fn().mockResolvedValue({ id: 'c-1' }),
-  };
+      findById: jest.fn().mockResolvedValue({ id: 'c-1' }),
+    };
 
     service = new MaintenanceService(
       repo,
