@@ -9,7 +9,7 @@ describe('AssistantService', () => {
   let service: AssistantService;
   let llm: { chat: jest.Mock };
   let repo: jest.Mocked<ConversationsRepository>;
-  let customers: { getById: jest.Mock };
+  let customers: { findById: jest.Mock };
 
   const llmResult = {
     text: 'Resposta do modelo',
@@ -28,7 +28,7 @@ describe('AssistantService', () => {
       recentMessages: jest.fn(),
       saveExchange: jest.fn().mockResolvedValue('conv-1'),
     } as unknown as jest.Mocked<ConversationsRepository>;
-    customers = { getById: jest.fn().mockResolvedValue({ id: 'c-1' }) };
+    customers = { findById: jest.fn().mockResolvedValue({ id: 'c-1' }) };
 
     service = new AssistantService(
       llm as unknown as LlmClient,
@@ -123,7 +123,7 @@ describe('AssistantService', () => {
   });
 
   it('propaga 404 de cliente inexistente antes de qualquer outra coisa', async () => {
-    customers.getById.mockRejectedValue(new NotFoundException());
+    customers.findById.mockRejectedValue(new NotFoundException());
 
     await expect(
       service.chat({ customerId: 'x', message: 'Oi' }),
