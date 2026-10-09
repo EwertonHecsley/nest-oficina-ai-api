@@ -26,6 +26,16 @@ class EnvironmentVariables {
 
   @IsString()
   DATABASE_URL: string;
+
+  @IsString()
+  GEMINI_API_KEY: string;
+
+  @IsString()
+  GEMINI_MODEL: string;
+
+  @IsNumber()
+  @Min(1)
+  LLM_MAX_TOKENS: number;
 }
 
 export function validate(config: Record<string, unknown>) {
