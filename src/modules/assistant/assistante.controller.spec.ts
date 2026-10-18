@@ -17,13 +17,13 @@ describe('AssistantController', () => {
 
   it('chat delega ao service', () => {
     const dto = { message: 'hi' } as any;
-    controller.chat(dto);
+    void controller.chat(dto);
     expect(service.chat).toHaveBeenCalledWith(dto);
   });
 
   it('messages delega ao service', () => {
     const query = { customerId: 'c1' } as any;
-    controller.messages('conv-1' as any, query);
+    void controller.messages('conv-1' as any, query);
     expect(service.getMessages).toHaveBeenCalledWith('conv-1', 'c1');
   });
 });

@@ -38,6 +38,8 @@ describe('CustomerService', () => {
   it('findById lança NotFoundException quando não encontrado', async () => {
     repository.findById.mockResolvedValue(undefined);
 
-    await expect(service.findById('x')).rejects.toBeInstanceOf(NotFoundException);
+    await expect(service.findById('x')).rejects.toBeInstanceOf(
+      NotFoundException,
+    );
   });
 });

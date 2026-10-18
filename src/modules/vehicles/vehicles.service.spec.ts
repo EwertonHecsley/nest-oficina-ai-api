@@ -4,7 +4,12 @@ import { VehiclesService } from './vehicles.service';
 
 describe('VehiclesService', () => {
   let service: VehiclesService;
-  let repo: { insert: jest.Mock; findByPlate: jest.Mock; findByCustomer: jest.Mock; findById: jest.Mock };
+  let repo: {
+    insert: jest.Mock;
+    findByPlate: jest.Mock;
+    findByCustomer: jest.Mock;
+    findById: jest.Mock;
+  };
   let customers: { findById: jest.Mock };
 
   beforeEach(() => {
@@ -34,7 +39,10 @@ describe('VehiclesService', () => {
   it('create lança ConflictException se placa existir', async () => {
     repo.findByPlate.mockResolvedValue({ id: 'v-0' });
     await expect(
-      service.create({ customerId: 'c-1', plate: 'abc1234' } as CreateVehicleDto),
+      service.create({
+        customerId: 'c-1',
+        plate: 'abc1234',
+      } as CreateVehicleDto),
     ).rejects.toBeInstanceOf(ConflictException);
     expect(repo.insert).not.toHaveBeenCalled();
   });
@@ -47,7 +55,9 @@ describe('VehiclesService', () => {
 
   it('getByPlate lança NotFoundException', async () => {
     repo.findByPlate.mockResolvedValue(undefined);
-    await expect(service.getByPlate('abc')).rejects.toBeInstanceOf(NotFoundException);
+    await expect(service.getByPlate('abc')).rejects.toBeInstanceOf(
+      NotFoundException,
+    );
   });
 
   it('getById retorna veículo', async () => {
@@ -58,7 +68,9 @@ describe('VehiclesService', () => {
 
   it('getById lança NotFoundException', async () => {
     repo.findById.mockResolvedValue(undefined);
-    await expect(service.getById('x')).rejects.toBeInstanceOf(NotFoundException);
+    await expect(service.getById('x')).rejects.toBeInstanceOf(
+      NotFoundException,
+    );
   });
 
   it('listByCustomer delega ao repo', async () => {

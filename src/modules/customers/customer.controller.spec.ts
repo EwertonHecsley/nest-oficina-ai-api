@@ -17,12 +17,12 @@ describe('CustomerController', () => {
 
   it('create delega', () => {
     const dto = { name: 'x' } as any;
-    controller.create(dto);
+    void controller.create(dto);
     expect(service.create).toHaveBeenCalledWith(dto);
   });
 
   it('getById delega', () => {
-    controller.getById('id1' as any);
+    void controller.getById('id1' as any);
     expect(service.findById).toHaveBeenCalledWith('id1');
   });
 });
